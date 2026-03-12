@@ -1,4 +1,5 @@
-# TDNet (Degradation-aware Comprehensive Task Decomposition for Joint Rain and Haze Removal)
+# <img src="figs/TDNet_logo.png" alt="TDNet Logo" width="30" height="30" style="vertical-align: middle; margin-left: 10px;"> TDNet: Degradation-aware Comprehensive Task Decomposition for Joint Rain and Haze Removal
+
 #### News
 - **Mar 12, 2026:** Results and pretrained weights on five benchmarks are available; Codes for train/test/evaluation are updated.
 - **Jan 23, 2026:** Initialization of the repository.
