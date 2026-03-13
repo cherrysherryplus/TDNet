@@ -22,7 +22,7 @@
 > More details can be found in the TXT or YAML files from the `envs` folder.
 
 ## Our results and pretrained models
-> Results on RainhazeSynscapes, Raincityscapes, Raincityscapes-pp, Rain200H, and RW2AH are available at [**<Your-Saved-Images-Path>**](https://pan.baidu.com/s/1mLGH_Zm9lvj11Jn0lZ2keA). Corresponding pretrained weights on these five datasets are available at [**pretrained_ckpt**](https://pan.baidu.com/s/10j1iRyl9HWJS935SvJWSww).
+> Results on RainhazeSynscapes, Raincityscapes, Raincityscapes-pp, Rain200H, and RW2AH are available at [**saved_images**](https://pan.baidu.com/s/1mLGH_Zm9lvj11Jn0lZ2keA). Corresponding pretrained weights on these five datasets are available at [**pretrained_ckpt**](https://pan.baidu.com/s/10j1iRyl9HWJS935SvJWSww).
 
 ## Train/Test/Evaluation
 
