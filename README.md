@@ -1,8 +1,8 @@
 # <img src="figs/TDNet_logo.png" alt="TDNet Logo" width="30" height="30" style="vertical-align: middle; margin-left: 10px;"> TDNet: Degradation-aware Comprehensive Task Decomposition for Joint Rain and Haze Removal
 
-#### News
+#### Updates
 - **Mar 12, 2026:** Results and pretrained weights on five benchmarks are available; Codes for train/test/evaluation are updated.
-- **Jan 23, 2026:** Initialization of the repository.
+- **Jan 23, 2026:** Creation of the repository.
 
 <hr />
 
@@ -22,10 +22,90 @@
 > More details can be found in the TXT or YAML files from the `envs` folder.
 
 ## Our results and pretrained models
-> Results on RainhazeSynscapes, Raincityscapes, Raincityscapes-pp, Rain200H, and RW2AH are available at [**saved_images**](https://pan.baidu.com/s/1mLGH_Zm9lvj11Jn0lZ2keA?pwd=eggd). Corresponding pretrained weights on these five datasets are available at [**pretrained_ckpt**](https://pan.baidu.com/s/10j1iRyl9HWJS935SvJWSww?pwd=qw4g).
+> Results on RainhazeSynscapes, Raincityscapes, Raincityscapes-pp, Rain200H, and RW2AH are available at [**<Your-Saved-Images-Path>**](https://pan.baidu.com/s/1mLGH_Zm9lvj11Jn0lZ2keA). Corresponding pretrained weights on these five datasets are available at [**pretrained_ckpt**](https://pan.baidu.com/s/10j1iRyl9HWJS935SvJWSww).
 
 ## Train/Test/Evaluation
-> More details can be found in the `Derainhaze/run.sh` file
+
+> More details can be found in the `Derainhaze/run.sh` file.
+
+---
+
+### Training
+
+```bash
+# RainCityscapes
+python main_multioutput.py --mode train --dataroot <Your-Dataroot-Path> --task_name raincityscape --learning_rate 3e-4 --batch_size 8 --num_epoch 200 --save_freq 4 --valid_freq 4
+
+# RainCityscapes-pp
+python main_multioutput.py --mode train --dataroot <Your-Dataroot-Path> --task_name raincityscape_pp --learning_rate 3e-4 --batch_size 8 --num_epoch 200 --save_freq 4 --valid_freq 4
+
+# RainhazeSynscapes
+python main_multioutput.py --mode train --dataroot <Your-Dataroot-Path> --task_name rainhaze_synscapes --learning_rate 3e-4 --batch_size 8 --num_epoch 200 --save_freq 4 --valid_freq 4
+
+# RW2AH
+python main_multioutput.py --mode train --dataroot <Your-Dataroot-Path> --task_name RW2AH --learning_rate 2e-4 --batch_size 8 --num_epoch 500 --save_freq 4 --valid_freq 4
+
+# Rain200H
+python main_multioutput.py --mode train --dataroot <Your-Dataroot-Path> --task_name Rain200H --learning_rate 1e-3 --batch_size 8 --patch_size 128 --num_epoch 500 --save_freq 4 --valid_freq 4
+```
+
+---
+
+### Testing
+
+```bash
+# RainCityscapes
+python main_multioutput.py --mode test --dataroot <Your-Dataroot-Path> --task_name raincityscape --test_model <Your-Pretrained-CKPT-Path>/raincityscape/Best.pkl --save_image True
+
+# RainCityscapes-pp
+python main_multioutput.py --mode test --dataroot <Your-Dataroot-Path> --task_name raincityscape_pp --test_model <Your-Pretrained-CKPT-Path>/raincityscape_pp/Best.pkl --save_image True
+
+# RainhazeSynscapes
+python main_multioutput.py --mode test --dataroot <Your-Dataroot-Path> --task_name rainhaze_synscapes --test_model <Your-Pretrained-CKPT-Path>/rainhaze_synscapes/Best.pkl --save_image True
+
+# RW2AH
+python main_multioutput.py --mode test --dataroot <Your-Dataroot-Path> --task_name RW2AH --test_model <Your-Pretrained-CKPT-Path>/RW2AH/Best.pkl --save_image True
+
+# Rain200H
+python main_multioutput.py --mode test --dataroot <Your-Dataroot-Path> --task_name Rain200H --test_model <Your-Pretrained-CKPT-Path>/Rain200H/Best.pkl --save_image True
+```
+
+---
+
+### Evaluation
+
+#### Reference-based Metrics
+
+```bash
+python calculate_metrics_basicsr.py --dataset rainhaze_synscapes
+python calculate_metrics_basicsr.py --dataset raincityscape
+python calculate_metrics_basicsr.py --dataset raincityscape_pp
+python calculate_metrics_basicsr.py --dataset Rain200H
+python calculate_metrics_basicsr.py --dataset RW2AH
+```
+
+#### No-reference Metrics
+
+```bash
+python calculate_metrics_rf.py clipiqa <Your-Saved-Images-Path>/Rain200H
+python calculate_metrics_rf.py niqe <Your-Saved-Images-Path>/Rain200H
+python calculate_metrics_rf.py clipiqa <Your-Saved-Images-Path>/RW2AH
+python calculate_metrics_rf.py niqe <Your-Saved-Images-Path>/RW2AH
+```
+
+---
+
+### Additional Tools
+
+- **FPS Test**
+  ```bash
+  python test_fps.py
+  ```
+
+- **Params & FLOPs**
+  ```bash
+  python test_complexity.py
+  ```
 
 ## Visualization
 
@@ -71,5 +151,5 @@
   </figure>
 </p>
 
-## Acknowledgement
+## Acknowledgements
 Our work is built upon the codebase of [SFNet](https://github.com/c-yn/SFNet), [TransMamba](https://github.com/sunshangquan/TransMamba), [Restormer](https://github.com/swz30/Restormer), and [C2PNet](https://github.com/YuZheng9/C2PNet), and we sincerely thank them for their contributions.
