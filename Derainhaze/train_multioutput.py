@@ -14,19 +14,8 @@ from muon import SingleDeviceMuonWithAuxAdam
 def _train(model, args):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     criterion = torch.nn.L1Loss()
-
-    # AdamW优化器
+    
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, betas=(0.9, 0.999), eps=1e-8, weight_decay=1e-4)
-    # Muon优化器
-    hidden_weights = [p for p in model.parameters() if p.ndim >= 4]
-    hidden_gains_biases = [p for p in model.parameters() if p.ndim < 4]
-    param_groups = [
-        dict(params=hidden_weights, use_muon=True,
-            lr=args.learning_rate * 5, weight_decay=1e-4),
-        dict(params=hidden_gains_biases, use_muon=False,
-            lr=args.learning_rate, betas=(0.9, 0.999), weight_decay=1e-4, eps=1e-8),
-    ]
-    optimizer = SingleDeviceMuonWithAuxAdam(param_groups)
     dataloader = train_dataloader(args.dataroot, args.batch_size, args.num_worker, args.task_name, patch_size=args.patch_size)
     max_iter = len(dataloader)
 
