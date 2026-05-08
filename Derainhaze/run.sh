@@ -24,7 +24,7 @@ python main_multioutput.py --mode test --dataroot /root/workspace/d3npjrkp420c73
 ## RW2AH
 python main_multioutput.py --mode test --dataroot /root/workspace/d3npjrkp420c73baj4ig/datasets --task_name RW2AH --test_model results/SFNet_multioutput_wINR_lr2e-4_w1L1-0.1FFT-wAdamW/Training-Results/RW2AH/Best.pkl --save_image True
 ## Rain200H
-python main_multioutput.py --mode test --dataroot /root/workspace/d3npjrkp420c73baj4ig/datasets --task_name Rain200H --test_model results/SFNet_multioutput_wINR_lr1e-3_w1L1-0.1FFT-wDA-wMuon/Training-Results/Rain200H/Best.pkl --save_image True
+python main_multioutput.py --mode test --dataroot /root/workspace/d3npjrkp420c73baj4ig/datasets --task_name Rain200H --test_model results/SFNet_multioutput_wINR_lr1e-3_w1L1-0.1FFT-wDA-wAdamW/Training-Results/Rain200H/Best.pkl --save_image True
 ##############################################################################
 
 
