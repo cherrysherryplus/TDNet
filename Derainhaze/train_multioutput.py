@@ -6,8 +6,6 @@ from torch.utils.tensorboard import SummaryWriter
 from valid_multioutput import _valid
 import torch.nn.functional as F
 from warmup_scheduler import GradualWarmupScheduler
-# Practices: use Muon for better performance
-from muon import SingleDeviceMuonWithAuxAdam
 
 
 
